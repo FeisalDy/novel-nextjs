@@ -4,9 +4,11 @@ import Button from '@/components/Button'
 import Label from '@/components/Label'
 import axios from '@/lib/axios'
 import Link from 'next/link'
+import Image from 'next/image'
 
 const getNovels = async () => {
-    const novels = await fetch('http://novel-backend.test/api/novels?page=1')
+    // const novels = await fetch('http://novel-backend.test/api/novels?page=1')
+    const novels = await fetch('http://novel-backend.test/api/novels')
 
     const novelsData = await novels.json()
     console.log(novelsData)
@@ -19,12 +21,29 @@ const Home = async () => {
     console.log(novel)
 
     return (
-        <div className='flex flex-col gap-2'>
+        <div className='grid grid-cols-2 gap-2'>
             {novel.map(data => (
                 <div className='p-2 bg-white' key={data.id}>
-                    <h1 className='text-sm'>{data.title}</h1>
-                    <p className='text-xs'>{data.description}</p>
-                    <Link href={`/novel/${data.id}`}>Link</Link>
+                    <Link href={`/novel/${data.id}`}>
+                        <div className='flex h-44 hover:text-green-500'>
+                            <div className='relative mr-2 basis-1/4'>
+                                <Image
+                                    src={data.cover}
+                                    alt='cover'
+                                    objectFit='cover'
+                                    fill={true}
+                                />
+                            </div>
+                            <div className='overflow-hidden basis-3/4'>
+                                <h1 className='text-lg font-bold'>
+                                    {data.title}
+                                </h1>
+                                <p className='line-clamp-6'>
+                                    {data.description}
+                                </p>
+                            </div>
+                        </div>
+                    </Link>
                 </div>
             ))}
         </div>

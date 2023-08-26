@@ -14,11 +14,13 @@ export default function RootLayout ({ children }) {
     return (
         <html lang='en'>
             <body className={inter.className}>
-                <div className='pt-12 antialiased bg-blue-50'>
+                <div className='pt-4 antialiased bg-[#e5e4db]'>
                     <div className='px-8 mx-auto'>
                         <Nav />
                     </div>
-                    <div className='px-4 mt-4'>{children}</div>
+                    <div className='max-w-screen-lg px-4 mx-auto my-4'>
+                        {children}
+                    </div>
                     <div>
                         <Footer />
                     </div>
