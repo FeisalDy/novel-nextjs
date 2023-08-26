@@ -13,17 +13,18 @@ const getNovels = async () => {
 
     return novelsData
 }
-
 const Home = async () => {
     const novelData = await getNovels()
     const novel = await novelData.data
     console.log(novel)
 
     return (
-        <div>
+        <div className='flex flex-col gap-2'>
             {novel.map(data => (
-                <div key={data.id}>
-                    <a href=''>{data.title}</a>
+                <div className='p-2 bg-white' key={data.id}>
+                    <h1 className='text-sm'>{data.title}</h1>
+                    <p className='text-xs'>{data.description}</p>
+                    <Link href={`/novel/${data.id}`}>Link</Link>
                 </div>
             ))}
         </div>

@@ -18,7 +18,7 @@ export default function RootLayout ({ children }) {
                     <div className='px-8 mx-auto'>
                         <Nav />
                     </div>
-                    <div className='mt-4'>{children}</div>
+                    <div className='px-4 mt-4'>{children}</div>
                     <div>
                         <Footer />
                     </div>
