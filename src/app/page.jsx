@@ -21,11 +21,11 @@ const Home = async () => {
     console.log(novel)
 
     return (
-        <div className='grid grid-cols-2 gap-2'>
+        <div className='grid sm:grid-cols-2'>
             {novel.map(data => (
                 <div className='p-2 bg-white' key={data.id}>
                     <Link href={`/novel/${data.id}`}>
-                        <div className='flex h-44 hover:text-green-500'>
+                        <div className='flex h-32 md:h-44 hover:text-green-500'>
                             <div className='relative mr-2 basis-1/4'>
                                 <Image
                                     src={data.cover}
@@ -35,10 +35,10 @@ const Home = async () => {
                                 />
                             </div>
                             <div className='overflow-hidden basis-3/4'>
-                                <h1 className='text-lg font-bold'>
+                                <h1 className='text-sm font-bold capitalize md:text-lg'>
                                     {data.title}
                                 </h1>
-                                <p className='line-clamp-6'>
+                                <p className='text-sm md:text-base line-clamp-5 md:line-clamp-6'>
                                     {data.description}
                                 </p>
                             </div>
