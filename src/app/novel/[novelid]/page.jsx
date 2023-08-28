@@ -1,16 +1,17 @@
 import Image from 'next/image'
+import Link from 'next/link'
 
-async function getNovel (id) {
-    const res = await fetch(`http://novel-backend.test/api/novels/${id}`)
+async function getNovel (novelid) {
+    const res = await fetch(`http://novel-backend.test/api/novels/${novelid}`)
     const data = await res.json()
     console.log(data)
 
     return data
 }
 
-async function getChapter (id) {
+async function getChapter (novelid) {
     const res1 = await fetch(
-        `http://novel-backend.test/api/chapters/novel/${id}`
+        `http://novel-backend.test/api/chapters/novel/${novelid}`
     )
     const data2 = await res1.json()
     console.log(data2)
@@ -29,55 +30,49 @@ export async function generateStaticParams () {
 }
 
 const Novel = async ({ params }) => {
-    const novelData = await getNovel(params.id)
-    const chapterData = await getChapter(params.id)
+    const novelData = await getNovel(params.novelid)
+    const chapterData = await getChapter(params.novelid)
     console.log(novelData)
     console.log(chapterData)
 
     return (
         <div className='bg-white'>
             <div className='flex flex-row'>
-                <div className='hidden p-6 md:block md:4/12'>
-                    <Image
-                        src={novelData.data.cover}
-                        alt='cover'
-                        objectFit='cover'
-                        // fill={true}
-                        width={250}
-                        height={330}
-                    />
-                </div>
-                <div className='pl-2 md:py-6 md:basis-8/12'>
-                    <h1 className='text-lg font-bold capitalize break-all'>
-                        {novelData.data.title}
-                    </h1>
-                    <div className='float-left pr-2 md:hidden'>
+                <div className='p-2 py-2'>
+                    <div className='float-left pr-2 '>
                         <Image
                             src={novelData.data.cover}
                             alt='cover'
                             objectFit='cover'
                             // fill={true}
                             width={250}
-                            height={330}
+                            height={500}
                         />
                     </div>
+                    <h1 className='text-lg font-bold capitalize break-all'>
+                        {novelData.data.title}
+                    </h1>
                     <p className='break-words whitespace-pre-line'>
                         {novelData.data.description}
                     </p>
                 </div>
             </div>
-            <div className='flex flex-col'>
-                <h1 className='text-lg font-bold capitalize break-all'>
-                    Chapter
-                </h1>
-                <div className='flex flex-col'>
+
+            <div className='m-2'>
+                <div className='grid grid-cols-2 px-4 pb-4 mb-4 border-t-2 border-black sm:grid-cols-3 md:grid-cols-4'>
                     {chapterData.data.map((chapter, index) => (
                         <div
                             key={chapter.id}
-                            className='flex flex-row justify-between'
+                            className='pt-2 hover:text-green-400'
                         >
-                            {/* <p>{chapter.attributes.title}</p> */}
-                            <p>{index + 1}</p>
+                            <Link
+                                href={`/novel/${params.novelid}/${chapter.id}`}
+                                className=''
+                            >
+                                <p className='border-b-2 border-slate-100'>
+                                    Section {index + 1}
+                                </p>
+                            </Link>
                         </div>
                     ))}
                 </div>
