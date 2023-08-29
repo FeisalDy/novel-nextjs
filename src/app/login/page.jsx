@@ -39,7 +39,7 @@ const Login = () => {
                             id='email'
                             type='email'
                             value={email}
-                            className='w-full'
+                            className='w-full border-2 border-gray-200 rounded-md'
                             onChange={e => setEmail(e.target.value)}
                             required
                             autoFocus
@@ -52,7 +52,7 @@ const Login = () => {
                             id='password'
                             type='password'
                             value={password}
-                            className='w-full'
+                            className='w-full border-2 border-gray-200 rounded-md'
                             onChange={e => setPassword(e.target.value)}
                             required
                         />

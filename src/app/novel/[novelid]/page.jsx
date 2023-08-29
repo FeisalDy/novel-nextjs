@@ -39,7 +39,7 @@ const Novel = async ({ params }) => {
         <div className='bg-white'>
             <div className='flex flex-row'>
                 <div className='p-2 py-2'>
-                    <div className='float-left pr-2 '>
+                    <div className='hidden float-left pr-2 md:block'>
                         <Image
                             src={novelData.data.cover}
                             alt='cover'
@@ -49,10 +49,20 @@ const Novel = async ({ params }) => {
                             height={500}
                         />
                     </div>
+                    <div className='block float-left pr-2 md:hidden'>
+                        <Image
+                            src={novelData.data.cover}
+                            alt='cover'
+                            objectFit='cover'
+                            // fill={true}
+                            width={120}
+                            height={400}
+                        />
+                    </div>
                     <h1 className='text-lg font-bold capitalize break-all'>
                         {novelData.data.title}
                     </h1>
-                    <p className='break-words whitespace-pre-line'>
+                    <p className='text-justify break-words whitespace-pre-line'>
                         {novelData.data.description}
                     </p>
                 </div>
@@ -69,7 +79,7 @@ const Novel = async ({ params }) => {
                                 href={`/novel/${params.novelid}/${chapter.id}`}
                                 className=''
                             >
-                                <p className='border-b-2 border-slate-100'>
+                                <p className='flex justify-center border-b-2 border-slate-100 '>
                                     Section {index + 1}
                                 </p>
                             </Link>

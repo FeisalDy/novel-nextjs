@@ -40,7 +40,7 @@ const Home = async () => {
                 <Link
                     href={{
                         pathname: '/novel',
-                        query: { page: '1' }
+                        query: { page: '1', sort: 'latest' }
                     }}
                     className='p-2 hover:text-green-400'
                 >
@@ -94,11 +94,11 @@ const Home = async () => {
 //     useEffect(() => {
 //         const getNovels = async () => {
 //             try {
-//                 const novels = await axios.get('/api/novels?page=1')
-//                 const novelsData = await novels.data.data
+// const novels = await axios.get('/api/novels?page=1')
+// const novelsData = await novels.data.data
 
-//                 console.log(novelsData)
-//                 setNovel(novelsData)
+// console.log(novelsData)
+// setNovel(novelsData)
 //             } catch (error) {
 //                 console.error('Error fetching menu data:', error)
 //             }
@@ -108,11 +108,11 @@ const Home = async () => {
 
 //     return (
 //         <div>
-//             {novel.map(data => (
-//                 <div key={data.id}>
-//                     <a href=''>{data.title}</a>
-//                 </div>
-//             ))}
+// {novel.map(data => (
+//     <div key={data.id}>
+//         <a href=''>{data.title}</a>
+//     </div>
+// ))}
 //         </div>
 //     )
 // }
